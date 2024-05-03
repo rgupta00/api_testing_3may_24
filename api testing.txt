@@ -18,6 +18,7 @@ two devices or web entities lying on the network.
 Types:-
 • SOAP Web Services
 • REST Web Services
+
 • The abbreviation of SOAP is the Simple Object Access Protocol.
    All its messages are usually in XML format, The SOAP message consists of: Root element, Headers & body
 • REST stands for Representational State Transfer,
@@ -25,6 +26,25 @@ Types:-
  (GET, PUT, POST, DELETE, etc.). 
  The allocation of resources in REST depends on the URL & it's
  messages will be in JSON, Text, HTML, XML etc.
+ 
+ Post is non idemoptent
+ Http Status code
+ 
+ REST build on top of http protocol
+ 
+ Uniform interface:
+	 A group of methods, such as GET, PUT, POST, and DELETE, 
+	that are easily understood by the client and server
+Stateless: Each request is processed independently from the previous ones
+
+Cacheable: REST is cache friendly and supports multiple formats
+
+Client-server: 
+	The server has "resources" that are presented to the client as a representation of the resource's state
+
+Layered system: 
+	Individual components cannot see beyond the immediate layer with which they are interacting 
+
 
 
 
@@ -32,13 +52,31 @@ Types:-
 Topic - 01 (API Testing)
 -------------------------
 What is Postman?
+	tool to test rest api
+	free to insall and use in production system
+	download and just install
+	login with ur username/password : gmail
+	
 • What is API & its types?
+	web api: REST api
+	
 • What are Web Services? & It's types
+	REST 
+	SOAP
+	
 • How to Install Postman?
+	:)
 • What are the other software's required?
+	nodejs, npm package manager
+	
 • Create Collections & Folders
 • How to Create First Request in Postman?
 • Create GET, POST, PUT & DELETE Requests
+
+https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-CreateBooking
+
+
+
 
 
 Topic - 02 (API Testing)
@@ -54,6 +92,10 @@ Negative Scenarios
 • Response header
 • Response time
 
+• use Environment Variables?
+Environment
+	dev test pre prod prod
+	
 Negative Scenarios
 	• Record not found
 	• Request has invalid characters
@@ -99,16 +141,232 @@ How to install Newman?
 • How to generate standard html report?
 • How to generate advanced html report?
 
+setp 2: install nodejs 
+just download and say next.. next
+
+step 2: install newmman (runner to run test cases)
+https://www.npmjs.com/package/newman
+
+npm install -g newman
+
+step 3:
+npm install -g newman-reporter-html
+npm install -g newman-reporter-htmlextra
+
+command to run newman test cases:
+-----------------------------------------
+newman run Booking_API_testing.json -e dev.postman_env.json
+newman run Booking_API_testing.json -e dev.postman_env.json -r html
+newman run Booking_API_testing.json -e dev.postman_env.json -r htmlextra
+
 Topic - 05 (API Testing)
 -------------------------
 • How to Create PATCH API Request?
-• Interview Question -
-• Difference between PUT & PATCH?
-• Difference between POST & PATCH?
-• Difference between PUT & POST?
+
+both used to update the data
+put : we send everthing , may not be very effecient
+patch: only the data that is requred to be updated is passed on
+
 • How to Verify JSON Schema?
+---------------------------------
+
+app1																app2
+sending some		verify the data formate
+data				------------------------->
+
+
+Object oriented word?
+
+class and Object:
+class  : category		:Trainer
+object: like example of that cat...: Rajeev
+
+json data----------------------> json schema
+ object								class
+ 
+ before comsuming json data ie recived from other app1
+ i should validate the data
+ 
+
+
+develpment
+
+best practices
+	https://martinfowler.com/articles/richardsonMaturityModel.html
+Level 0
+Level 1 - Resources
+Level 2 - HTTP Verbs
+Level 3 - Hypermedia Controls
+
 
 
 Topic - 06 (API Testing)
 -------------------------
 • Data Driven Testing using JSON file?
+
+
+
+Post lunch:
+------------
+REST api testing using postman
+
+
+how to test soap web service?
+-------------------------------
+demo how to write the code (Java dev , show some spring boot is a framework to rest rest api)
+
+What is SOAP
+
+2 ways to write web services:
+1. REST web services
+2. SOAP web services
+Simple Object Access protocol
+
+	application1							application2
+					--------------------
+							xml
+		SOAP
+		WSDL :web serice description language
+		
+		
+how to write a hello world soap web service:
+
+java dev: java code
+		see that feel about it
+		
+		
+Step 1: create a java code to create hello world soap api
+
+step 2: i want to understand wsdl?
+
+		wsdl is aka contract bw 2 parties
+		which tell us what web service do and how to call
+		how internally it works in not expose
+		
+		
+		
+		contract : 
+		interface : wsdl looks very similer to a interface aka contract
+		
+		interface Calculator{
+			public int add(int a, int b){
+				return a+b;
+			}
+		}
+		
+		class Add{
+			int a, int b;
+		}
+		
+		class AddResponse{
+			int result;
+		}
+		
+		interface Calculator{
+			public AddResponse add(Add data){
+				return a+b;
+			}
+		}
+		
+		<portType name="Calculator">
+			<operation name="add">
+			<input wsam:Action="http://demo.com/Calculator/addRequest" message="tns:add"/>
+			<output wsam:Action="http://demo.com/Calculator/addResponse" message="tns:addResponse"/>
+			</operation>
+	     </portType>
+		 
+		 
+		 Q: how to test soap api:
+		 soap ui smartbear 5.5
+		 https://dl.eviware.com/soapuios/5.5.0/SoapUI-5.5.0-windows-bin.zip
+		 
+		 How to install soap ui:
+		 1. download and extract to a folder
+		 2. run soapui.bat inside bin folder
+		 3. create a soap project and 
+		 prvoide the wsdl location
+			http://localhost:8080/calapp?wsdl
+			
+		 4. you will get a way to pass the input 
+		 and data is transfer bw two machine in terms of SOAP package 
+		 with some too less data + to much data data
+		
+
+Request payload: soap is bulky :(
+-------------------		
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:demo="http://demo.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <demo:add>
+         <arg0>2</arg0>
+         <arg1>7</arg1>
+      </demo:add>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <ns2:addResponse xmlns:ns2="http://demo.com/">
+         <return>9</return>
+      </ns2:addResponse>
+   </S:Body>
+</S:Envelope>
+
+
+Q: how to create doc for soap web service
+	wsdl file act as documentation: no need to have extra doc
+	knowledge to read wsdl correctly
+	
+		 
+		 
+		rest: swagger to create doc
+
+	
+
+security
+
+	basics auth: here username and password need to be passed with each request
+	jwt token: here rather then username and password we will pass the jwt token
+	oauth: mainly use for authorization using 3rd party application
+	
+	login using facebook
+	......
+	
+Testing JWT based api:
+======================
+
+https://survayapi.themetasum.com/swagger/index.html
+
+url for resitering new user:
+https://survayapi.themetasum.com/api/Authenticate/Register
+
+url for getting jwt token, u need to login the the app with the username/password you have registered:
+https://survayapi.themetasum.com/api/Authenticate/login
+
+
+
+calling a secure api:
+	1. without token : 401
+	2. with valid token : 200 with data
+	
+https://survayapi.themetasum.com/api/Survay/getSurvayData
+
+
+
+versioning(live coding)
+http://localhost:8080/v1/products
+http://localhost:8080/v2/products
+
+
+Writing REST api
+Writing SOAP api
+SOAP api testing
+
+<version>2.2.2.RELEASE</version>
+<java.version>1.8</java.version>
+
+
+30 min to try to use api 
+to run the test cases
