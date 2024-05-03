@@ -1,0 +1,114 @@
+API Testing workshop:
+--------------------
+What is API?
+• API stands for Application Programming Interface
+• APIs are mechanisms that enable two software components to communicate with each other 
+    using a set of definitions and protocols.
+• API contains collections of functions and procedures
+
+Types
+• Private AΡΙ
+• Public API
+• Partner API
+• Composite API
+
+What are Web Services?
+•A Web service is a software package that is used for communicating between 
+two devices or web entities lying on the network.
+Types:-
+• SOAP Web Services
+• REST Web Services
+• The abbreviation of SOAP is the Simple Object Access Protocol.
+   All its messages are usually in XML format, The SOAP message consists of: Root element, Headers & body
+• REST stands for Representational State Transfer,
+ It establishes connection over http or https protocol
+ (GET, PUT, POST, DELETE, etc.). 
+ The allocation of resources in REST depends on the URL & it's
+ messages will be in JSON, Text, HTML, XML etc.
+
+
+
+
+Topic - 01 (API Testing)
+-------------------------
+What is Postman?
+• What is API & its types?
+• What are Web Services? & It's types
+• How to Install Postman?
+• What are the other software's required?
+• Create Collections & Folders
+• How to Create First Request in Postman?
+• Create GET, POST, PUT & DELETE Requests
+
+
+Topic - 02 (API Testing)
+-------------------------
+Negative Scenarios
+• How to declare & use Environment Variables?
+• How to save response in variable?
+• Postman Console - Debugging
+• Create automatic API tests?
+• Assertions -
+• Status code
+• Response body contains
+• Response header
+• Response time
+
+Negative Scenarios
+	• Record not found
+	• Request has invalid characters
+	• Values has to many characters
+	• Request sent with missing information
+	• Value is not in correct format
+	
+
+Ex: How to declare & use Environment Variables?
+let we want to use firstname for env variable
+let we want to use lastname for env variable
+
+Ex: we will create a new booking 
+ "bookingid": 392
+ now we want to define bookingid into a variable so that it can be used in all the 
+ crud methods
+ 
+var jsonData=pm.response.json();
+pm.environment.set("b_id",jsonData.bookingid);
+it will set a variable once we run the request
+
+https://restful-booker.herokuapp.com/booking/{{b_id}}
+
+Do same for api token used to update the api
+
+
+
+Topic - 03 (API Testing)
+-------------------------
+Advanced Assertions
+• JSON Assertion
+• Nested JSON Assertion
+• Curl Command
+• How to execute Collection?
+• How to execute folder?
+• Exclude tests script from execution
+• How to Export Collection?
+
+Topic - 04 (API Testing)
+-------------------------
+How to install Newman?
+• How to execute postman collections?
+• How to generate standard html report?
+• How to generate advanced html report?
+
+Topic - 05 (API Testing)
+-------------------------
+• How to Create PATCH API Request?
+• Interview Question -
+• Difference between PUT & PATCH?
+• Difference between POST & PATCH?
+• Difference between PUT & POST?
+• How to Verify JSON Schema?
+
+
+Topic - 06 (API Testing)
+-------------------------
+• Data Driven Testing using JSON file?
